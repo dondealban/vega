@@ -1,4 +1,3 @@
-/*eslint no-console: "warn"*/
 import labelLayout from './LabelLayout';
 import BitMap from './BitMap';
 import { labelWidth } from './LabelPlacers/Common';
