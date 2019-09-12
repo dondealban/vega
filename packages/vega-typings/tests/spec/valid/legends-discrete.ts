@@ -1,6 +1,5 @@
 import { Spec } from 'vega';
 
-// https://vega.github.io/editor/#/examples/vega/bar-chart
 export const spec: Spec = {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "padding": 5,
@@ -9,8 +8,7 @@ export const spec: Spec = {
     "legend": {
       "offset": 5,
       "gradientDirection": "horizontal",
-      "gradientLength": 300,
-      "gradientWidth": 15
+      "gradientLength": 300
     }
   },
 

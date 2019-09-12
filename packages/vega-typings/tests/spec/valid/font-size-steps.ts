@@ -1,17 +1,23 @@
 import { Spec } from 'vega';
 
-// https://vega.github.io/editor/#/examples/vega/bar-chart
 export const spec: Spec = {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "width": 850,
   "height": 200,
   "padding": 5,
+  "config": {
+    "signals": [
+      {"name": "baseFontSize", "value": 14}
+    ],
+    "title": {
+      "fontSize": {"signal": "baseFontSize + 2"}
+    }
+  },
   "title": {
     "text": "Font Size Steps and Weber's Law?",
     "anchor": "start",
     "frame": "group",
     "orient": "top",
-    "fontSize": 16,
     "dy": 30
   },
   "data": [

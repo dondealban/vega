@@ -2,7 +2,8 @@ import {
   allOf, anyOf, oneOf, ref,
   array, def, object, pattern, required, type,
   booleanType, nullType, numberType, stringType, signalRef,
-  numberValue
+  numberValue,
+  enums
 } from './util';
 
 export const fontWeightEnum = [
@@ -109,8 +110,39 @@ const colorHCL = object({
   _l_: numberValueRef
 }, undefined);
 
+const gradientStops = array(
+  object({
+  _offset_: numberType,
+  _color_: stringType
+  })
+);
+
+const linearGradient = object({
+  _gradient_: enums(['linear']),
+  id: stringType,
+  x1: numberType,
+  y1: numberType,
+  x2: numberType,
+  y2: numberType,
+  _stops_: ref('gradientStops')
+});
+
+const radialGradient = object({
+  _gradient_: enums(['radial']),
+  id: stringType,
+  x1: numberType,
+  y1: numberType,
+  r1: numberType,
+  x2: numberType,
+  y2: numberType,
+  r2: numberType,
+  _stops_: ref('gradientStops')
+});
+
 const colorValue = oneOf(
   ref('nullableStringValue'),
+  object({_value_: ref('linearGradient')}),
+  object({_value_: ref('radialGradient')}),
   object({
     _gradient_: scaleRef,
     start: array(numberType, {minItems: 2, maxItems: 2}),
@@ -225,7 +257,10 @@ export default {
     colorHSL,
     colorLAB,
     colorHCL,
-    colorValue
+    colorValue,
+    gradientStops,
+    linearGradient,
+    radialGradient
   },
   defs: {
     rule,
